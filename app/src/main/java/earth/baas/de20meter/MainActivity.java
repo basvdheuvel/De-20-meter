@@ -1,5 +1,6 @@
 package earth.baas.de20meter;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,28 +9,37 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 public class MainActivity extends AppCompatActivity {
     Button missButton, singleButton, doubleButton, tripleButton;
     Game game;
     ListView scoreListView;
     ListAdapter scoreAdapter;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(baas.de20meter.R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        missButton = (Button)findViewById(baas.de20meter.R.id.missButton);
-        singleButton = (Button)findViewById(baas.de20meter.R.id.singleButton);
-        doubleButton = (Button)findViewById(baas.de20meter.R.id.doubleButton);
-        tripleButton = (Button)findViewById(baas.de20meter.R.id.tripleButton);
+        missButton = (Button) findViewById(R.id.missButton);
+        singleButton = (Button) findViewById(R.id.singleButton);
+        doubleButton = (Button) findViewById(R.id.doubleButton);
+        tripleButton = (Button) findViewById(R.id.tripleButton);
 
         missButton.setOnClickListener(missListener);
         singleButton.setOnClickListener(singleListener);
         doubleButton.setOnClickListener(doubleListener);
         tripleButton.setOnClickListener(tripleListener);
 
-        scoreListView = (ListView)findViewById(baas.de20meter.R.id.scoreListView);
+        scoreListView = (ListView) findViewById(R.id.scoreListView);
         scoreAdapter = scoreListView.getAdapter();
 
         game = new Game();
@@ -39,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         game.init();
         game.logState();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private View.OnClickListener missListener = new View.OnClickListener() {
@@ -72,4 +85,44 @@ public class MainActivity extends AppCompatActivity {
             game.logState();
         }
     };
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://earth.baas.de20meter/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://earth.baas.de20meter/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }
