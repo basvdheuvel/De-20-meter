@@ -6,11 +6,12 @@
 
     <TextView
         android:id="@+id/positionTextView"
-        android:layout_width="25pt"
+        android:layout_width="15pt"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem"
-        android:textStyle="bold" />
+        android:textAlignment="textEnd"
+        android:gravity="end" />
 
     <TextView
         android:id="@+id/nameTextView"

@@ -23,14 +23,17 @@ public class Game {
     public void init() {
         currentPlayerIndex = 0;
         currentPlayer = players.get(0);
+        currentPlayer.giveTurn();
     }
 
     private void nextPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
         currentPlayer = players.get(currentPlayerIndex);
+        currentPlayer.giveTurn();
     }
 
     public void miss() {
+        currentPlayer.miss();
         nextPlayer();
     }
 
@@ -66,5 +69,13 @@ public class Game {
                 Log.d(tag, "  " + player);
             }
         }
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
     }
 }
