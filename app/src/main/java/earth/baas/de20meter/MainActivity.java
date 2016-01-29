@@ -2,11 +2,17 @@ package earth.baas.de20meter;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+
     Button missButton, singleButton, doubleButton, tripleButton;
     Game game;
     ListView scoreListView;
@@ -16,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         missButton = (Button) findViewById(R.id.missButton);
         singleButton = (Button) findViewById(R.id.singleButton);
@@ -36,29 +45,38 @@ public class MainActivity extends AppCompatActivity {
                 game.getPlayers());
         scoreListView.setAdapter(playerListAdapter);
 
-        game.addPlayer(new Player("a"));
-        game.addPlayer(new Player("b"));
-        game.addPlayer(new Player("c"));
-        game.addPlayer(new Player("d"));
-        game.addPlayer(new Player("e"));
-        game.addPlayer(new Player("f"));
-        game.addPlayer(new Player("g"));
-        game.addPlayer(new Player("h"));
-        game.addPlayer(new Player("i"));
-        game.addPlayer(new Player("j"));
-        game.addPlayer(new Player("k"));
-        game.addPlayer(new Player("l"));
-        game.addPlayer(new Player("m"));
-        game.addPlayer(new Player("n"));
-        game.addPlayer(new Player("o"));
-        game.addPlayer(new Player("p"));
-        game.addPlayer(new Player("q"));
-        game.addPlayer(new Player("r"));
+        game.addPlayer(new Player("a", game));
+        game.addPlayer(new Player("b", game));
+        game.addPlayer(new Player("c", game));
 
         game.init();
         game.logState();
 
         update();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_undo) {
+            Log.d(TAG, "Undo clicked");
+            game.undoMove();
+            update();
+            return true;
+        }
+
+        if (id == R.id.action_settings) {
+            Log.d(TAG, "Settings clicked");
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private View.OnClickListener missListener = new View.OnClickListener() {

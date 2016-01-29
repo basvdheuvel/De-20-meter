@@ -34,15 +34,20 @@ public class PlayerListAdapter extends ArrayAdapter {
 
         TextView positionTextView = (TextView)convertView.findViewById(R.id.positionTextView);
         TextView nameTextView = (TextView)convertView.findViewById(R.id.nameTextView);
+        TextView throwTextView = (TextView)convertView.findViewById(R.id.throwTextView);
 
         positionTextView.setText(Integer.toString(player.getPosition()));
         nameTextView.setText(player.getName());
 
         if (player.hasTurn()) {
+            throwTextView.setText(String.format(
+                    context.getResources().getString(R.string.throw_text), 3 - player.getThrow()));
             positionTextView.setTypeface(positionTextView.getTypeface(), Typeface.BOLD);
             nameTextView.setTypeface(nameTextView.getTypeface(), Typeface.BOLD);
+
         }
         else {
+            throwTextView.setText("");
             positionTextView.setTypeface(positionTextView.getTypeface(), Typeface.NORMAL);
             nameTextView.setTypeface(nameTextView.getTypeface(), Typeface.NORMAL);
         }

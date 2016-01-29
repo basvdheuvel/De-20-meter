@@ -6,12 +6,12 @@ package earth.baas.de20meter;
 public class Player {
     private String name;
     private int position;
-    private boolean haveTurn;
+    private Game game;
 
-    public Player(String name) {
+    public Player(String name, Game game) {
         this.name = name;
         position = 20;
-        haveTurn = false;
+        this.game = game;
     }
 
     public String getName() {
@@ -22,37 +22,23 @@ public class Player {
         return position;
     }
 
-    public void giveTurn() {
-        haveTurn = true;
+    public int getThrow() {
+        return game.getThrow();
     }
 
     public boolean hasTurn() {
-        return haveTurn;
+        return game.playerHasTurn(this);
     }
 
-    public int miss() {
-        return move(0);
-    }
-
-    public int scoreSingle() {
-        return move(1);
-    }
-
-    public int scoreDouble() {
-        return move(2);
-    }
-
-    public int scoreTriple() {
-        return move(3);
-    }
-
-    private int move(int n) {
+    public void move(int n) {
         position -= n;
-        haveTurn = false;
-        return position;
+    }
+
+    public void undo(int n) {
+        position += n;
     }
 
     public String toString() {
-        return "<Player: " + name + ", " + position + ", " + haveTurn + ">";
+        return "<Player: " + name + ", " + position + ", " + hasTurn() + ">";
     }
 }

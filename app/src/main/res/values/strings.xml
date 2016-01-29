@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">De 20 meter</string>
+
+    <string name="throw_text">(%1$d te gaan)</string>
+
+    <string name="action_undo">Ongedaan maken</string>
+    <string name="action_settings">Instellingen</string>
 </resources>

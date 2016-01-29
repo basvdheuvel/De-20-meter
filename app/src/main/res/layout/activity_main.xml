@@ -3,58 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+    <!--
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    -->
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="match_parent">
 
-        <ListView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/scoreListView"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:choiceMode="singleChoice"
-            android:clickable="true"
-            android:touchscreenBlocksFocus="true" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true">
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
 
-            <Button
-                android:layout_width="fill_parent"
+            <ListView
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:text="Mis"
-                android:id="@+id/missButton"
-                android:layout_weight="1" />
+                android:id="@+id/scoreListView"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:choiceMode="singleChoice"
+                android:clickable="true"
+                android:touchscreenBlocksFocus="true" />
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1">
 
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:text="Enkel"
-                    android:id="@+id/singleButton"
+                    android:text="Mis"
+                    android:id="@+id/missButton"
                     android:layout_weight="1" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1">
@@ -62,16 +70,30 @@
                     <Button
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:text="Dubbel"
-                        android:id="@+id/doubleButton"
+                        android:text="Enkel"
+                        android:id="@+id/singleButton"
                         android:layout_weight="1" />
 
-                    <Button
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:text="Tripel"
-                        android:id="@+id/tripleButton"
-                        android:layout_weight="1" />
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:text="Dubbel"
+                            android:id="@+id/doubleButton"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:text="Tripel"
+                            android:id="@+id/tripleButton"
+                            android:layout_weight="1" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
